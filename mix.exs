@@ -7,9 +7,9 @@ defmodule ExLinkHeader.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     description: description,
-     package: package,
-     deps: deps]
+     description: description(),
+     package: package(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application
@@ -30,7 +30,7 @@ defmodule ExLinkHeader.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:credo, "~> 0.2", only: [:dev, :test]}
+      {:credo, "~> 1.5", only: [:dev, :test]}
     ]
   end
 
