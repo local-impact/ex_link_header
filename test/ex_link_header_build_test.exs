@@ -41,7 +41,7 @@ defmodule ExLinkHeaderBuildTest do
     }
     link_h = ExLinkHeader.build(link)
 
-    assert link_h == "<http://" <> host <> ">; rel=\"" <> rel <> "\"; hreflang=\"en\"; title=\"mytitle\""
+    assert link_h == "<http://" <> host <> ">; rel=\"" <> rel <> "\"; title=\"mytitle\"; hreflang=\"en\""
   end
 
   test "build a link with query params" do
@@ -59,7 +59,7 @@ defmodule ExLinkHeaderBuildTest do
     # need to find a way to better check without relying on
     # ordering
 
-    assert link_h == "<http://" <> host <> "?page=5&q=elixir+erlang>; rel=\"" <> rel <> "\""
+    assert link_h == "<http://" <> host <> "?q=elixir+erlang&page=5>; rel=\"" <> rel <> "\""
   end
 
   test "build some simple links" do
@@ -78,11 +78,8 @@ defmodule ExLinkHeaderBuildTest do
     encoded_path_b = URI.encode(path_b)
 
     link_h = ExLinkHeader.build(link)
-    #
-    # relations will appear in reversed alphabetical order
-    #
-    assert link_h == "<http://" <> host <> encoded_path_b <> ">; rel=\"" <> rel_b <> "\", " <>
-      "<http://" <> host <> encoded_path_a <> ">; rel=\"" <> rel_a <> "\""
+    assert link_h == "<http://" <> host <> encoded_path_a <> ">; rel=\"" <> rel_a <> "\", " <>
+      "<http://" <> host <> encoded_path_b <> ">; rel=\"" <> rel_b <> "\""
   end
 
 end

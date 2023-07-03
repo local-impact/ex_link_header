@@ -35,7 +35,7 @@ defmodule ExLinkHeaderIntegrationTest do
     # ordering
     parsed = ExLinkHeader.parse!(link_h)
     assert Map.get(parsed, :next) ==  %ExLinkHeaderEntry{
-      url: "http://" <> host <> "?page=5&q=elixir",
+      url: "http://" <> host <> "?q=elixir&page=5",
       scheme: "http",
       host: "www.example.com",
       path: nil,
