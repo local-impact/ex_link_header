@@ -22,9 +22,11 @@ defmodule ExLinkHeader.Parser do
   end
 
   defp extract(links) do
-    Enum.filter_map(links, fn(link) ->
+    links
+    |> Enum.filter(fn(link) ->
       Regex.match?(@regex_format, link)
-    end, fn(link) ->
+    end)
+    |> Enum.map(fn(link) ->
       [_, url, params] = Regex.run(@regex_format, link)
       {url, parse_params(params)}
     end)
